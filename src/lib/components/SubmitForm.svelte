@@ -36,7 +36,7 @@
 <main>
   <section class="showcase">
     <form on:submit|preventDefault={handleSubmit}>
-      <h1>Image Generator</h1>
+      <h1 class="title">Image Generator</h1>
       <div class="form-control">
         <input
           type="text"

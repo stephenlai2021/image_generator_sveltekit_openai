@@ -86,6 +86,7 @@ body {
 
 form select {
   -webkit-appearance: none;
+  appearance: none;
   font-size: 20px;
   width: 500px;
   padding: 1rem;
@@ -94,10 +95,13 @@ form select {
   margin-bottom: 1rem;
 }
 
-@media (max-width: 360px) {
+@media (max-width: 380px) {
   .description {
     text-align: center;
     margin-top: 0px;
+  }
+  .showcase h1 {
+    font-size: 30px;
   }
 }
 
