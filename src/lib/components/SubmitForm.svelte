@@ -69,7 +69,6 @@
 
   <section class="image">
     <div class="image-container">
-      <!-- <h2 class="msg"></h2> -->
       {#if $imageUrl}
         <img src={$imageUrl} alt="" id="image" />
       {/if}

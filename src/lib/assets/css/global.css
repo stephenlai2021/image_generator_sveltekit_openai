@@ -51,7 +51,7 @@ body {
 
 /* Showcase */
 .showcase {
-  height: 450px;
+  height: 100%;
   width: 100%;
   background: var(--primary-color);
 }
@@ -73,23 +73,39 @@ body {
   width: 100%;
 }
 
-.showcase form input,
+.form-input {
+  -webkit-appearance: none;
+  width: 500px;
+  padding: 1rem;
+  font-size: 20px;
+  border: none;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  outline: none;
+}
+
 form select {
+  -webkit-appearance: none;
   font-size: 20px;
   width: 500px;
-  /* max-width: 500px; */
-  /* min-width: 200px; */
   padding: 1rem;
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-bottom: 1rem;
 }
 
+@media (max-width: 360px) {
+  .description {
+    text-align: center;
+    margin-top: 0px;
+  }
+}
+
 @media (max-width: 520px) {
   form select,
-  .form-input,
-  .form-control {
-    width: 100%;
+  /* .form-control, */
+  .form-input {
+    width: 100%;    
   }
 }
 
