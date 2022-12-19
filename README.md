@@ -12,9 +12,9 @@ You cannot enter inappropriate prompts because it violates OpenAI policy, so jus
 
 ## how to setup this project
 
-- simply download this repo to your desktop, unzip
+- simply download this repo to your desktop, unzip it
 - open your favorite editor and type `npm i` to installl the necessary dependencies
-- once it is done type 1npm run dev` to start the server
+- once it is done type `npm run dev` to start the server
 - create an `.env` file in root directory, this is where your OpenAI API Key is
 ```
 OPENAI_API_KEY=xxxxxxx
