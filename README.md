@@ -1,38 +1,17 @@
-# create-svelte
+# OpenAI Image Generator
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+Sveltekit 1.0 has finally released and launched, and it is the best moment to buid apps with this most advanced, smarties, powerful fullstack framework. 
 
-## Creating a project
+I am very glad that we can use OpenAI services to generator AI images, this is really interesting and amazing, especially for people who are not familiar with arts and we can still get the pictures we want by describing specific needs to OpenAI server. 😘
 
-If you're seeing this, you've probably already done this step. Congrats!
+I ported this app from Node/Express project to Sveltekit made by Brad Traversy, because with Sveltekit we don't need to create a separate backend, we can fully utilize Svelekit server to make backend development very easy which is the best part.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+The backend dwells in 'src/routes/api/openai/generateImage/+server.js', this file contains a post request that sends the required data from client to OpenAI server and gets the image url which then displayed in the page.
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+You cannot enter inappropriate prompts because it violates OpenAI policy, so just save your breath and enter something meaningful.
 
-## Developing
+## how to setup this project
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+- simply download this repo to your desktop, unzip
+- open your favorite editor and type `npm i` to installl the necessary dependencies
+- once it is done type 1npm run dev` to start the server
