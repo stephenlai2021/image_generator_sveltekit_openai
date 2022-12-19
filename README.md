@@ -15,6 +15,13 @@ You cannot enter inappropriate prompts because it violates OpenAI policy, so jus
 - simply download this repo to your desktop, unzip
 - open your favorite editor and type `npm i` to installl the necessary dependencies
 - once it is done type 1npm run dev` to start the server
+- create an `.env` file in root directory, this is where your OpenAI API Key is
+```
+OPENAI_API_KEY=xxxxxxx
+```
+- of course you need to create an account in OpenAI website, you can find video instruction in Brad's tutorial[https://www.youtube.com/watch?v=fU4o_BKaUZE&t=1471s]
+
+
 
 ## Reference
 - Build An AI Image Generator With OpenAI & Node.js [https://www.youtube.com/watch?v=fU4o_BKaUZE&t=1471s]
