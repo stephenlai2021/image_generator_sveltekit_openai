@@ -95,6 +95,12 @@ form select {
   margin-bottom: 1rem;
 }
 
+.image-container {
+  margin: auto;
+  max-width: 1024px;
+  max-height: 1024px;
+}
+
 @media (max-width: 380px) {
   .description {
     text-align: center;
@@ -110,6 +116,9 @@ form select {
   /* .form-control, */
   .form-input {
     width: 100%;    
+  }
+  .image {
+    /* width: 100%; */
   }
 }
 

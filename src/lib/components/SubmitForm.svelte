@@ -3,12 +3,17 @@
   import IconClear from "$lib/components/IconClear.svelte";
 
   let prompt = ''
-  let size = 'medium'
+  let size = '256x256'
   let showIconClear = false
+  // let options = [
+  //   { id: 1, size: "small" },
+  //   { id: 2, size: "medium" },
+  //   { id: 3, size: "large" }
+  // ]
   let options = [
-    { id: 1, size: "small" },
-    { id: 2, size: "medium" },
-    { id: 3, size: "large" }
+    "256x256",
+    "512x512",
+    "1024x1024" 
   ]
 
   const handleSubmit = (e) => {
@@ -27,6 +32,8 @@
     prompt = ''
     showIconClear = false
   }
+
+  $: console.log('image size: ', size)
 
   $: if (prompt) {
     showIconClear = true
@@ -50,16 +57,16 @@
           </div>
         {/if}            
       </div>
-      <div class="form-control">
-        <select name="size">
+      <!-- <div class="form-control">
+        <select bind:value={size}>
           <option>-- Please select image size --</option>
-            {#each options as o}
-              <option value={o.size}>
-                {o.size}
+            {#each options as option}
+              <option value={option}>
+                {option}
               </option>
             {/each}
         </select>
-      </div>
+      </div> -->
       <button type="submit" class="btn">
         Generate
       </button>
@@ -70,7 +77,13 @@
   <section class="image">
     <div class="image-container">
       {#if $imageUrl}
-        <img src={$imageUrl} alt="" id="image" />
+        <img 
+          src={$imageUrl} 
+          alt="" 
+          class="image" 
+          />
+          <!-- width={size === 'small' ? '256' : size === 'medium' ? '512' : size === 'large' ? '1024' : 0}
+          height={size === 'small' ? '256' : size === 'medium' ? '512' : size === 'large' ? '1024' : 0} -->
       {/if}
     </div>
   </section>

@@ -12,14 +12,15 @@ export const POST = async ({ request }) => {
   console.log("prompt: ", prompt);
   console.log("size: ", size);
 
-  const imageSize =
-    size === "small" ? "256x256" : size === "medium" ? "512x512" : "1024x1024";
+  // const imageSize =
+  //   size === "small" ? "256x256" : size === "medium" ? "512x512" : "1024x1024";
 
   try {
     const response = await openai.createImage({
       prompt,
       n: 1,
-      size: imageSize
+      // size: imageSize
+      size
     });
 
     const imageUrl = response.data.data[0].url;
