@@ -76,7 +76,7 @@ body {
 .form-input {
   -webkit-appearance: none;
   width: 500px;
-  padding: 1rem;
+  padding: 1rem 2.2rem 1rem 1rem;
   font-size: 20px;
   border: none;
   margin-bottom: 20px;
@@ -97,8 +97,11 @@ form select {
 
 .image-container {
   margin: auto;
-  max-width: 1024px;
-  max-height: 1024px;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
+  grid-gap: 30px;
+  /* border: 1px solid; */
 }
 
 @media (max-width: 380px) {
@@ -159,10 +162,24 @@ span {
   text-decoration: underline;
 }
 
+/* .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+} */
+
+.prompt {
+  /* width: 256px; */
+  padding: 5px;
+  text-align: center;
+  font-size: 0.8rem;  
+  /* border: 1px solid; */
+}
+
 /* Image */
 .image {
-  width: 100%;
-  margin-top: 2rem;
+  margin: 2rem 0;
 }
 
 img {
@@ -174,6 +191,10 @@ img {
   font-size: 1.6rem;
   text-align: center;
   margin-top: 1rem;
+}
+
+.image-container {
+ 
 }
 
 /* spinner */

@@ -16,6 +16,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@supabase/supabase-js": "^2.2.2",
+		"dotenv": "^16.0.3",
 		"openai": "^3.1.0"
 	}
 }
