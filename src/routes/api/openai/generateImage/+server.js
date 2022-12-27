@@ -1,34 +1,35 @@
 import { Configuration, OpenAIApi } from "openai";
 import { OPENAI_API_KEY } from "$env/static/private";
 import { json } from "@sveltejs/kit";
-import { createClient } from "@supabase/supabase-js";
-import * as dotenv from 'dotenv'
+import { writeFileSync } from "fs";
+import supabase from "$lib/supabase/config";
+import * as dotenv from "dotenv";
 
-dotenv.config()
-
-const supabaseUrl = process.env.SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_API_KEY;
-const supabase = createClient(supabaseUrl, supabaseKey);
+dotenv.config();
 
 const configuration = new Configuration({
-  apiKey: OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY,
+  organization: "org-CNyAxWDWmtUylw5fFDP3pLmc",
 });
 const openai = new OpenAIApi(configuration);
 
 export const GET = async () => {
-  let { data, error } = await supabase.from("openai_db").select("*").neq('image_url', 'NULL')
+  let { data, error } = await supabase
+    .from("openai_db")
+    .select("*")
+    .neq("image_url", "NULL");
 
   if (error) {
-    console.log('error: ', error)
+    console.log("error: ", error);
   }
 
   return new Response(
     JSON.stringify({
-      data
+      data,
     }),
     { status: 200 }
   );
-}
+};
 
 export const POST = async ({ request }) => {
   const { prompt } = await request.json();
@@ -42,18 +43,33 @@ export const POST = async ({ request }) => {
 
     const imageUrl = response.data.data[0].url;
 
+    // Convert Image URL to Blob Buffer
+    const imgResult = await fetch(imageUrl);
+    const blob = await imgResult.blob();
+    const buffer = Buffer.from(await blob.arrayBuffer());
+
+    // Save Image Buffer to Disk
+    writeFileSync(`images/${Date.now()}.png`, buffer);
+
+    // Save Image Blob to Supabase Storage
+    await supabase.storage
+      .from("openai-images")
+      .upload(`${Date.now()}.png`, blob);
+
+    // Save Image URL and Prompt to Supabase
     const { error } = await supabase
       .from("openai_db")
-      .insert([{ prompt, image_url: imageUrl, answer: '' }]);
+      .insert([{ prompt, image_url: imageUrl, answer: "" }]);
 
     if (error) {
-      console.log('error: ', error)
+      console.log("error: ", error);
     }
 
+    // Return Image URL to Store
     return new Response(
       JSON.stringify({
         success: true,
-        data: imageUrl
+        data: imageUrl,
       }),
       { status: 200 }
     );

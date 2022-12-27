@@ -65,7 +65,7 @@
     <div class="image-container">
         {#each $imageGallery as item}
           <div class="card">
-            <img src={item.image_url} alt="" class="image_url" width="256" />
+            <img src={item.image_url} alt="" class="image_url" />
             <p class="prompt">{item.prompt}</p>
           </div>
         {/each}

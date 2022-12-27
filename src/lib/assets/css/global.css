@@ -95,15 +95,6 @@ form select {
   margin-bottom: 1rem;
 }
 
-.image-container {
-  margin: auto;
-  max-width: 1200px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(256px, 1fr));
-  grid-gap: 30px;
-  /* border: 1px solid; */
-}
-
 @media (max-width: 380px) {
   .description {
     text-align: center;
@@ -116,12 +107,8 @@ form select {
 
 @media (max-width: 520px) {
   form select,
-  /* .form-control, */
   .form-input {
     width: 100%;    
-  }
-  .image {
-    /* width: 100%; */
   }
 }
 
@@ -162,15 +149,21 @@ span {
   text-decoration: underline;
 }
 
-/* .card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-} */
+.image-container {
+  margin: auto;
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(256px, 1fr));
+  grid-gap: 30px;
+  /* border: 1px solid red; */
+}
+
+.image_url {
+  width: 256px;
+  border-radius: 8px;
+}
 
 .prompt {
-  /* width: 256px; */
   padding: 5px;
   text-align: center;
   font-size: 0.8rem;  

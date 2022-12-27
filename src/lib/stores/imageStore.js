@@ -10,7 +10,7 @@ export const createImage = async (prompt) => {
   const res = await fetch("/api/openai/generateImage", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
     body: JSON.stringify({
       prompt,
