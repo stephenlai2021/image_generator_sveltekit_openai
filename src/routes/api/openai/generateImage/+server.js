@@ -43,7 +43,7 @@ export const POST = async ({ request }) => {
 
     const imageUrl = response.data.data[0].url;
 
-    // Convert Image URL to Blob Buffer
+    // Convert Image URL to Blob & Buffer
     const imgResult = await fetch(imageUrl);
     const blob = await imgResult.blob();
     const buffer = Buffer.from(await blob.arrayBuffer());
