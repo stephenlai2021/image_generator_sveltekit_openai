@@ -1,8 +1,8 @@
 import { Configuration, OpenAIApi } from "openai";
-import { OPENAI_API_KEY } from "$env/static/private";
 import { json } from "@sveltejs/kit";
 import { writeFileSync } from "fs";
 import supabase from "$lib/supabase/config";
+import { OPENAI_API_KEY } from "$env/static/private";
 import * as dotenv from "dotenv";
 
 dotenv.config();
@@ -23,6 +23,19 @@ export const GET = async () => {
     console.log("error: ", error);
   }
 
+  // const { data, error } = await supabase
+  //   .storage.
+  //   from("openai-images")
+  //   .list("");
+
+  // if (error) {
+  //   return new Response(
+  //     JSON.stringify({
+  //       error: error.message,
+  //     }),
+  //     { status: 500 }
+  //   );
+  
   return new Response(
     JSON.stringify({
       data,
@@ -41,22 +54,23 @@ export const POST = async ({ request }) => {
       size: "512x512",
     });
 
+    // Get image url from OpenAI
     const imageUrl = response.data.data[0].url;
 
-    // Convert Image URL to Blob & Buffer
+    // Convert image url to blob & buffer
     const imgResult = await fetch(imageUrl);
     const blob = await imgResult.blob();
     const buffer = Buffer.from(await blob.arrayBuffer());
 
-    // Save Image Buffer to Disk
+    // Save image buffer to disk
     writeFileSync(`images/${Date.now()}.png`, buffer);
 
-    // Save Image Blob to Supabase Storage
+    // Save image blob to Supabase Storage
     await supabase.storage
       .from("openai-images")
       .upload(`${Date.now()}.png`, blob);
 
-    // Save Image URL and Prompt to Supabase
+    // Save image url and prompt to Supabase Database
     const { error } = await supabase
       .from("openai_db")
       .insert([{ prompt, image_url: imageUrl, answer: "" }]);
@@ -65,7 +79,7 @@ export const POST = async ({ request }) => {
       console.log("error: ", error);
     }
 
-    // Return Image URL to Store
+    // return image url to frontend(store)
     return new Response(
       JSON.stringify({
         success: true,
