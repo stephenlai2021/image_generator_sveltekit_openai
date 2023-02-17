@@ -2,8 +2,6 @@
   import { imageUrl, createImage, imageGallery } from "$lib/stores/imageStore";
   import IconClear from "$lib/components/IconClear.svelte";
 
-  // export let openai
-
   let prompt = "";
   let showIconClear = false;
 
@@ -16,7 +14,7 @@
     }
 
     createImage(prompt);
-    console.log("image url: ", imageUrl);
+    console.log("image url: ", $imageUrl);
   };
 
   const handleInput = () => {
@@ -47,16 +45,12 @@
         {/if}
       </div>
       <button type="submit" class="btn"> Generate </button>
-      <!-- <p class="description">
-        This App is powered by <span>Sveltekit1.0</span> + <span>Open AI</span>
-      </p> -->
     </form>
   </section>
 
   <section class="image">
     <div class="image-container">
         {#each $imageGallery as item}
-        <!-- {#each openai as item} -->
           <div class="card">
             <img src={item.image_url} alt="" class="image_url" />
             <p class="prompt">{item.prompt}</p>
