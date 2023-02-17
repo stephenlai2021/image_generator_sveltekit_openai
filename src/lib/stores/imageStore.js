@@ -21,6 +21,7 @@ export const createImage = async (prompt) => {
   const json = await res.json();
   imageUrl.set(json.data);
   console.log("image url | store: ", json.data);
+
   
   imageGallery.update((cur) => [{ image_url: json.data, prompt }, ...cur]);
   isPromptSubmit.set(false);

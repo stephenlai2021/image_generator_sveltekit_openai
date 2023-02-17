@@ -39,6 +39,7 @@ export const POST = async ({ request }) => {
 
     // Get image url from OpenAI
     const imageUrl = response.data.data[0].url;
+    console.log('image url | server: ', imageUrl)
 
     // Convert image url to blob & buffer
     const imgResult = await fetch(imageUrl);

@@ -14,7 +14,6 @@
     }
 
     createImage(prompt);
-    console.log("image url: ", $imageUrl);
   };
 
   const handleInput = () => {
