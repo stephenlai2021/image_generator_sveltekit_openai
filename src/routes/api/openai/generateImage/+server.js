@@ -59,7 +59,12 @@ export const POST = async ({ request }) => {
     // Save image url and prompt to Supabase Database
     const { error } = await supabase
       .from("images_generator")
-      .insert([{ prompt, image_url: tempFile }]);
+      .insert([
+        {
+          prompt,
+          image_url: `https://itzgmdgndusfvggjclwk.supabase.co/storage/v1/object/public/openai-images/${tempFile}`,
+        },
+      ]);
 
     if (error) {
       console.log("error: ", error);

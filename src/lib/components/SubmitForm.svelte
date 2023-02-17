@@ -47,9 +47,9 @@
         {/if}
       </div>
       <button type="submit" class="btn"> Generate </button>
-      <p class="description">
+      <!-- <p class="description">
         This App is powered by <span>Sveltekit1.0</span> + <span>Open AI</span>
-      </p>
+      </p> -->
     </form>
   </section>
 
@@ -65,3 +65,9 @@
     </div>
   </section>
 </main>
+
+<style>
+  .showcase {
+    padding-bottom: 50px;
+  }
+</style>
