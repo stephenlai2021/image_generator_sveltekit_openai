@@ -3,6 +3,12 @@ import { writeFileSync } from "fs";
 import { supabase } from "$lib/supabase/config";
 import { PUBLIC_OPENAI_API_KEY } from "$env/static/public";
 
+const configuration = new Configuration({
+  apiKey: PUBLIC_OPENAI_API_KEY,
+  organization: "org-CNyAxWDWmtUylw5fFDP3pLmc",
+});
+const openai = new OpenAIApi(configuration);
+
 export const GET = async () => {
   let { data, error } = await supabase
     .from("images_generator")
@@ -23,13 +29,6 @@ export const GET = async () => {
 
 export const POST = async ({ request }) => {
   const { prompt } = await request.json();
-
-  const configuration = new Configuration({
-    apiKey: PUBLIC_OPENAI_API_KEY,
-    // organization: "org-CNyAxWDWmtUylw5fFDP3pLmc",
-  });
-  const openai = new OpenAIApi(configuration);
-
   try {
     const response = await openai.createImage({
       prompt,
@@ -48,8 +47,7 @@ export const POST = async ({ request }) => {
 
     let tempFile = `${Date.now()}.png`
     // Save image buffer to disk
-    // writeFileSync(`images/${Date.now()}.png`, buffer);
-    writeFileSync(`images/${tempFile}`, buffer);
+    // writeFileSync(`images/${tempFile}`, buffer);
 
     // Save image blob to Supabase Storage (OK)
     await supabase.storage
