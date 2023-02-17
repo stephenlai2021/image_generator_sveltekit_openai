@@ -1,6 +1,5 @@
 <script>
   import { imageGallery } from '$lib/stores/imageStore'
-  import { onMount } from 'svelte'
   import SubmitForm from '$lib/components/SubmitForm.svelte'
   import Spinner from '$lib/components/Spinner.svelte'
 

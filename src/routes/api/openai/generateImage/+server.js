@@ -45,18 +45,21 @@ export const POST = async ({ request }) => {
     const blob = await imgResult.blob();
     const buffer = Buffer.from(await blob.arrayBuffer());
 
+    let tempFile = `${Date.now()}.png`
     // Save image buffer to disk
-    writeFileSync(`images/${Date.now()}.png`, buffer);
+    // writeFileSync(`images/${Date.now()}.png`, buffer);
+    writeFileSync(`images/${tempFile}`, buffer);
 
     // Save image blob to Supabase Storage (OK)
     await supabase.storage
       .from("openai-images")
-      .upload(`${Date.now()}.png`, blob);
+      // .upload(`${Date.now()}.png`, blob);
+      .upload(tempFile, blob);
 
     // Save image url and prompt to Supabase Database
     const { error } = await supabase
       .from("images_generator")
-      .insert([{ prompt, image_url: imageUrl }]);
+      .insert([{ prompt, image_url: tempFile }]);
 
     if (error) {
       console.log("error: ", error);
